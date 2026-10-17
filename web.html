@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Couple Chaos Lab - Doodle Edition</title>
+<style>
+:root{--ink:#111;--paper:#fff;--muted:#555}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif}
+button{font:inherit;cursor:pointer}
+.wrap{width:min(100% - 24px,850px);margin:auto;padding:18px 0 30px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.brand{font-size:1rem;font-weight:1000;letter-spacing:.5px}
+.points{border:2px solid #111;border-radius:999px;padding:7px 12px;font-weight:800;font-size:.85rem}
+.track{height:7px;border:2px solid #111;border-radius:99px;margin-bottom:16px;overflow:hidden}
+.bar{height:100%;width:0;background:#111;transition:width .2s}
+.page{display:none}
+.page.active{display:block;animation:pop .18s ease}
+@keyframes pop{from{opacity:.5;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card{border:3px solid #111;border-radius:20px;padding:clamp(20px,5vw,38px);background:#fff;box-shadow:6px 6px 0 #111}
+.center{text-align:center}
+.eyebrow{font-size:.75rem;font-weight:1000;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-size:clamp(2.7rem,9vw,5rem);line-height:.98;margin:16px 0 12px;letter-spacing:-2px}
+h2{font-size:clamp(1.65rem,5vw,2.6rem);line-height:1.12;margin:14px 0}
+p{font-size:1rem;line-height:1.6;color:#333}
+.btn{border:3px solid #111;border-radius:12px;padding:12px 18px;font-weight:1000;background:#fff;color:#111;box-shadow:3px 3px 0 #111}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+.primary{background:#111;color:#fff}
+.answers{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 8px;min-height:62px}
+.answer{min-height:58px;border:3px solid #111;border-radius:13px;padding:13px 10px;background:#fff;color:#111;font-weight:900;box-shadow:3px 3px 0 #111;line-height:1.35}
+.answer:hover{background:#f0f0f0}
+.answer.yes{background:#111;color:#fff}
+.answer.no{background:#fff;color:#111;transition:left .12s,top .12s}
+.note{min-height:26px;margin-top:14px;font-size:.9rem;font-weight:800;color:#333}
+.nav{display:flex;gap:12px;margin-top:22px}
+.nav button{flex:1}
+.doodle{width:min(100%,360px);height:auto;display:block;margin:14px auto 18px}
+.home-doodle{width:min(100%,430px)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.stat{border:2px solid #111;border-radius:14px;padding:16px;box-shadow:3px 3px 0 #111}
+.stat strong{display:block;font-size:1.8rem;margin-bottom:4px}
+.report{border:2px dashed #111;border-radius:14px;padding:16px;text-align:left}
+footer{text-align:center;font-size:.78rem;color:#555;margin-top:20px}
+@media(max-width:520px){.wrap{width:calc(100% - 18px);padding-top:12px}.card{border-radius:16px;box-shadow:4px 4px 0 #111}.answers{grid-template-columns:1fr;gap:11px}.answer{width:100%}.nav{flex-direction:column-reverse}.nav button{width:100%}.brand{font-size:.85rem}.points{font-size:.75rem;padding:6px 9px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">COUPLE CHAOS LAB / DOODLE EDITION</div>
+  <div class="points" id="points">Points: 0</div>
+</header>
+<div class="track"><div class="bar" id="bar"></div></div>
+
+<section class="page active" id="home">
+<div class="card center">
+<div class="eyebrow">A VERY SERIOUS RELATIONSHIP TEST</div>
+<svg class="doodle home-doodle" viewBox="0 0 420 230" aria-label="Two silly hand-drawn characters">
+<g fill="none" stroke="#111" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+<path d="M85 205 Q87 140 105 93 Q125 47 173 46 Q218 44 233 76 Q245 101 204 106 L151 105"/>
+<path d="M110 86 L110 86 M193 83 L193 83" stroke-width="9"/>
+<path d="M137 109 Q170 123 211 108"/>
+<path d="M141 120 L144 205 M206 119 L211 205"/>
+<path d="M258 204 Q263 152 279 122 Q290 102 320 107 Q351 112 361 139 L378 204"/>
+<path d="M288 117 L288 117 M333 120 L333 120" stroke-width="9"/>
+<path d="M295 137 Q315 146 338 135"/>
+<path d="M281 124 Q257 112 236 119 L209 125"/>
+<path d="M206 125 Q184 133 161 129"/>
+<path d="M279 145 L249 180 M338 149 L319 181"/>
+</g>
+<path d="M233 35 l8 -13 7 13 14 -3 -7 13 10 9 -16 1 -5 14 -8 -13 -14 4 7 -13 -10 -9 15 0z" fill="#fff" stroke="#111" stroke-width="3"/>
+</svg>
+<h1>This is for <br>You...</h1>
+<p>Seven tiny questions... Absolutely no chill.</p>
+<button class="btn primary" onclick="showPage('q0')">START THE CHAOS →</button>
+</div>
+</section>
+
+<section class="page" id="q0">
+<div class="card center">
+<div class="eyebrow">Question 1 · Be honest</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Two doodle characters looking at each other">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M45 160 Q49 104 63 65 Q80 29 119 29 Q153 29 164 55 Q173 75 142 81 L101 78 M80 54 L80 54 M130 52 L130 52 M94 81 Q115 90 143 80 M82 89 L85 160 M145 88 L149 160"/>
+<path d="M201 160 Q204 114 218 82 Q230 58 256 63 Q282 68 289 94 L303 160 M231 80 L231 80 M265 81 L265 81 M234 97 Q251 105 269 96 M221 103 L196 130 M272 108 L285 137"/>
+</g>
+<path d="M163 19 C154 7 138 20 163 39 C188 20 172 7 163 19" fill="#fff" stroke="#111" stroke-width="3"/>
+</svg>
+<h2>Do you love me?</h2>
+<p>Pick the correct answer. This is not a trick question. Probably.</p>
+<div class="answers">
+<button class="answer yes" onclick="answer('q0','YES! Excellent survival instincts.','q1')">YES, OBVIOUSLY.</button>
+<button class="answer no" onmouseenter="dodge(this)" ontouchstart="dodge(this)" onclick="dodge(this)">NO.</button>
+</div>
+<div class="note" id="note-q0">The NO button is already nervous.</div>
+</div>
+</section>
+
+<section class="page" id="q1">
+<div class="card center">
+<div class="eyebrow">Question 2 · The argument</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Doodle couple in an argument">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M45 160 Q48 102 63 63 Q80 29 119 29 Q153 29 164 55 Q173 75 142 81 L101 78 M80 54 L80 54 M130 52 L130 52 M94 81 Q115 90 143 80 M82 89 L85 160 M145 88 L149 160"/>
+<path d="M201 160 Q204 114 218 82 Q230 58 256 63 Q282 68 289 94 L303 160 M231 80 L231 80 M265 81 L265 81 M234 97 L269 97 M221 103 L196 130 M272 108 L285 137"/>
+</g>
+<path d="M179 26 l8 12 12 -4 -7 12 8 8 -14 0 -4 12 -7 -12 -12 2 6 -11 -8 -9 13 1z" fill="#fff" stroke="#111" stroke-width="3"/>
+</svg>
+<h2>She says, “I'm not angry.” What do you do?</h2>
+<div class="answers">
+<button class="answer yes" onclick="answer('q1','Good move. Communication has entered the chat.','q2')">Ask what's wrong.</button>
+<button class="answer no" onmouseenter="dodge(this)" ontouchstart="dodge(this)" onclick="dodge(this)">Say “okay” and game.</button>
+</div>
+<div class="note" id="note-q1">Read the room, champ.</div>
+</div>
+</section>
+
+<section class="page" id="q2">
+<div class="card center">
+<div class="eyebrow">Question 3 · Pizza politics</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Doodle couple arguing over pizza">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M30 160 Q35 104 48 64 Q64 30 99 30 Q131 30 142 54 Q150 73 122 80 L85 77 M63 54 L63 54 M111 52 L111 52 M76 81 Q96 89 122 80 M66 89 L68 160 M124 88 L127 160"/>
+<path d="M202 160 Q205 114 219 82 Q231 58 257 63 Q283 68 290 94 L304 160 M232 80 L232 80 M266 81 L266 81 M235 97 Q252 105 270 96 M221 103 L196 130 M273 108 L286 137"/>
+</g>
+<path d="M158 57 L190 69 L172 99 Z" fill="#fff" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="171" cy="78" r="3" fill="#111"/><circle cx="181" cy="83" r="3" fill="#111"/>
+</svg>
+<h2>There is one slice of pizza left. Your move?</h2>
+<div class="answers">
+<button class="answer yes" onclick="answer('q2','Peace treaty accepted. Pizza shared.','q3')">Share the slice.</button>
+<button class="answer no" onmouseenter="dodge(this)" ontouchstart="dodge(this)" onclick="dodge(this)">Eat it and deny everything.</button>
+</div>
+<div class="note" id="note-q2">Pizza betrayal is a serious offence.</div>
+</div>
+</section>
+
+<section class="page" id="q3">
+<div class="card center">
+<div class="eyebrow">Question 4 · Loyalty court</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Doodle couple making a promise">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M38 160 Q42 104 56 65 Q73 29 112 29 Q146 29 157 55 Q166 75 135 81 L94 78 M73 54 L73 54 M123 52 L123 52 M87 81 Q108 90 135 80 M75 89 L78 160 M137 88 L141 160"/>
+<path d="M202 160 Q205 114 219 82 Q231 58 257 63 Q283 68 290 94 L304 160 M232 80 L232 80 M266 81 L266 81 M235 97 Q252 105 270 96 M221 103 L196 130 M273 108 L286 137"/>
+</g>
+<path d="M173 28 C164 16 148 29 173 48 C198 29 182 16 173 28" fill="#fff" stroke="#111" stroke-width="3"/>
+</svg>
+<h2>Someone flirts with you. What do you do?</h2>
+<div class="answers">
+<button class="answer yes" onclick="answer('q3','Green flag. The imaginary judge approves.','q4')">Keep clear boundaries.</button>
+<button class="answer no" onmouseenter="dodge(this)" ontouchstart="dodge(this)" onclick="dodge(this)">Flirt back “for fun”.</button>
+</div>
+<div class="note" id="note-q3">The imaginary judge is watching.</div>
+</div>
+</section>
+
+<section class="page" id="q4">
+<div class="card center">
+<div class="eyebrow">Question 5 · Memory test</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Doodle character thinking">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M40 160 Q44 104 58 65 Q75 29 114 29 Q148 29 159 55 Q168 75 137 81 L96 78 M75 54 L75 54 M125 52 L125 52 M89 81 Q110 90 137 80 M77 89 L80 160 M139 88 L143 160"/>
+<path d="M204 160 Q207 114 221 82 Q233 58 259 63 Q285 68 292 94 L306 160 M234 80 L234 80 M268 81 L268 81 M237 97 Q254 105 272 96 M223 103 L198 130 M275 108 L288 137"/>
+</g>
+<circle cx="202" cy="29" r="12" fill="#fff" stroke="#111" stroke-width="3"/>
+<circle cx="229" cy="17" r="7" fill="#fff" stroke="#111" stroke-width="3"/>
+<path d="M249 14 l10 -7 M253 26 l13 0" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+</svg>
+<h2>What is my date of birth?</h2>
+<div class="answers">
+<button class="answer yes" onclick="answer('q4','Gold star awarded. You remembered!','q5')">I remember!</button>
+<button class="answer no" onmouseenter="dodge(this)" ontouchstart="dodge(this)" onclick="dodge(this)">I forgot.</button>
+</div>
+<div class="note" id="note-q4">Your memory is being judged.</div>
+</div>
+</section>
+
+<section class="page" id="q5">
+<div class="card center">
+<div class="eyebrow">Question 6 · The ultimate choice</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Doodle couple choosing between a drink and a heart">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M30 160 Q34 104 48 65 Q65 29 104 29 Q138 29 149 55 Q158 75 127 81 L86 78 M65 54 L65 54 M115 52 L115 52 M79 81 Q100 90 127 80 M67 89 L70 160 M129 88 L133 160"/>
+<path d="M202 160 Q205 114 219 82 Q231 58 257 63 Q283 68 290 94 L304 160 M232 80 L232 80 M266 81 L266 81 M235 97 Q252 105 270 96 M221 103 L196 130 M273 108 L286 137"/>
+</g>
+<path d="M160 35 C149 21 130 37 160 59 C190 37 171 21 160 35" fill="#fff" stroke="#111" stroke-width="4"/>
+</svg>
+<h2>Drink or me? Choose wisely.</h2>
+<div class="answers">
+<button class="answer yes" onclick="answer('q5','Correct choice! Your girlfriend wins this round.','q6')">YOU, OBVIOUSLY!</button>
+<button class="answer no" onmouseenter="dodge(this)" ontouchstart="dodge(this)" onclick="dodge(this)">THE DRINK!</button>
+</div>
+<div class="note" id="note-q5">Wrong answer detected. Try again, Mr. Trouble.</div>
+</div>
+</section>
+
+<section class="page" id="q6">
+<div class="card center">
+<div class="eyebrow">Final question · Say it with your chest</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Doodle couple giving each other a hug">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M30 160 Q34 104 48 65 Q65 29 104 29 Q138 29 149 55 Q158 75 127 81 L86 78 M65 54 L65 54 M115 52 L115 52 M79 81 Q100 90 127 80 M67 89 L70 160 M129 88 L133 160"/>
+<path d="M202 160 Q205 114 219 82 Q231 58 257 63 Q283 68 290 94 L304 160 M232 80 L232 80 M266 81 L266 81 M235 97 Q252 105 270 96 M221 103 L196 130 M273 108 L286 137"/>
+<path d="M134 99 Q167 117 208 102"/>
+</g>
+<path d="M164 25 C153 12 136 28 164 49 C192 28 175 12 164 25" fill="#fff" stroke="#111" stroke-width="4"/>
+</svg>
+<h2>What's your opinion about your girlfriend?</h2>
+<div class="answers">
+<button class="answer yes" onclick="answer('q6','She is a strong, independent woman and one of the most loyal people ever.','result')">Strong, independent & loyal.</button>
+<button class="answer yes" onclick="answer('q6','She is my favourite person, my biggest support, and my partner in crime.','result')">My favourite person & partner in crime.</button>
+</div>
+<div class="note" id="note-q6">Both answers are acceptable. Choose one and be cute.</div>
+</div>
+</section>
+
+<section class="page" id="result">
+<div class="card center">
+<div class="eyebrow">Officially unofficial relationship report</div>
+<h1>CHAOS VERDICT</h1>
+<div class="stat-grid">
+<div class="stat"><strong id="finalScore">0/7</strong><span>Chaos points</span></div>
+<div class="stat"><strong id="finalPercent">0%</strong><span>Survival score</span></div>
+</div>
+<div class="report">
+<h2 id="rankTitle">Under investigation</h2>
+<p id="resultMessage"></p>
+</div>
+<div class="nav">
+<button class="btn" onclick="showPage('home')">HOME</button>
+<button class="btn primary" onclick="showPage('ending')">TRUCE NOTE →</button>
+</div>
+</div>
+</section>
+
+<section class="page" id="ending">
+<div class="card center">
+<div class="eyebrow">The final doodle</div>
+<svg class="doodle" viewBox="0 0 320 180" aria-label="Two doodle characters sitting together">
+<g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M42 160 Q46 104 60 65 Q77 29 116 29 Q150 29 161 55 Q170 75 139 81 L98 78 M77 54 L77 54 M127 52 L127 52 M91 81 Q112 90 139 80 M79 89 L82 160 M141 88 L145 160"/>
+<path d="M190 160 Q193 114 207 82 Q219 58 245 63 Q271 68 278 94 L292 160 M220 80 L220 80 M254 81 L254 81 M223 97 Q240 105 258 96 M209 103 L184 130 M261 108 L274 137"/>
+<path d="M136 104 Q164 116 196 103"/>
+</g>
+<path d="M166 23 C155 10 138 26 166 47 C194 26 177 10 166 23" fill="#fff" stroke="#111" stroke-width="4"/>
+</svg>
+<h1>OKAY, TRUCE.</h1>
+<p>Even after the silly arguments, you're still my favourite person. Now share the snacks and stop stealing the blanket.</p>
+<div class="feedback">Official result: more laughs, fewer arguments, and shared pizza.</div>
+<button class="btn primary" onclick="restart()">PLAY AGAIN</button>
+</div>
+</section>
+
+<footer>COUPLE CHAOS LAB · a silly little doodle love test</footer>
+</div>
+
+<script>
+const order=['home','q0','q1','q2','q3','q4','q5','q6','result','ending'];
+const completed={};
+let score=0;
+
+function updateScore(){
+  document.getElementById('points').textContent='Points: '+score;
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(page=>page.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('bar').style.width=
+    (Math.max(0,order.indexOf(id))/(order.length-1)*100)+'%';
+  updateScore();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function answer(id,message,next){
+  if(!completed[id]){
+    score++;
+    completed[id]=true;
+  }
+  const note=document.getElementById('note-'+id);
+  if(note) note.textContent=message;
+  updateScore();
+  if(next==='result') showResult();
+  showPage(next);
+}
+
+function dodge(button){
+  const area=button.parentElement;
+  const maxLeft=Math.max(0,area.clientWidth-button.offsetWidth);
+  const maxTop=Math.max(0,area.clientHeight-button.offsetHeight);
+  button.style.position='absolute';
+  button.style.left=Math.floor(Math.random()*maxLeft)+'px';
+  button.style.top=Math.floor(Math.random()*maxTop)+'px';
+  const note=button.closest('.page').querySelector('.note');
+  if(note) note.textContent='NOPE. That answer has escaped. Try again!';
+}
+
+function showResult(){
+  const percent=Math.round(score/7*100);
+  document.getElementById('finalScore').textContent=score+'/7';
+  document.getElementById('finalPercent').textContent=percent+'%';
+
+  let title,message;
+  if(percent>=85){
+    title='CHAOS CHAMPION';
+    message='You survived every round. You win the imaginary trophy, the pizza, and the remote.';
+  }else if(percent>=60){
+    title='DECENT FIGHTER';
+    message='Not bad! Keep communicating, listening, and sharing snacks.';
+  }else if(percent>=35){
+    title='SILLY GOOSE';
+    message='More practice needed. Please report to the snack diplomacy department.';
+  }else{
+    title='CHAOS SUSPECT';
+    message='The jury recommends a calm chat, a sincere apology if needed, and sharing the pizza.';
+  }
+  document.getElementById('rankTitle').textContent=title;
+  document.getElementById('resultMessage').textContent=message;
+}
+
+function restart(){
+  score=0;
+  Object.keys(completed).forEach(key=>delete completed[key]);
+  document.querySelectorAll('.no').forEach(button=>{
+    button.style.position='';
+    button.style.left='';
+    button.style.top='';
+  });
+  showPage('home');
+  updateScore();
+}
+</script>
+</body>
+</html>
